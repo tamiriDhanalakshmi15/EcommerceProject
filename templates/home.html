@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My E-Commerce Store</title>
+    <link rel="stylesheet" href="{% static 'products/style.css' %}">
+</head>
+
+<body>
+
+<header>
+    <div style="text-align: center; margin: 20px;">
+    <a href="/cart/">🛒 View Cart</a>
+</div>
+    <h1>My E-Commerce Store</h1>
+    <p>Welcome to our online shop</p>
+</header>
+
+<h2 style="text-align:center;">Products</h2>
+
+<div class="products">
+
+    {% for product in products %}
+
+    <div class="product-card">
+
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% endif %}
+
+        <h3>{{ product.name }}</h3>
+
+        <p>{{ product.description }}</p>
+
+        <p class="price">₹{{ product.price }}</p>
+
+        <p class="stock">Stock: {{ product.stock }}</p>
+
+        <a href="{% url 'add_to_cart' product.id %}" class="add-cart">Add to Cart</a>
+
+    </div>
+
+    {% empty %}
+
+        <p>No products available.</p>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

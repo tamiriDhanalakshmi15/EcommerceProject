@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/static/products/style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Checkout</h1>
+</header>
+
+<div class="checkout">
+
+    {% if message %}
+
+        <h2>✅ {{ message }}</h2>
+
+        <p>Thank you for shopping with us!</p>
+
+        <br>
+
+        <a href="/">
+            <button type="button">Continue Shopping</button>
+        </a>
+
+    {% else %}
+
+        <h2>Customer Details</h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label>Full Name:</label><br>
+            <input type="text" name="name" required><br><br>
+
+            <label>Email:</label><br>
+            <input type="email" name="email" required><br><br>
+
+            <label>Phone Number:</label><br>
+            <input type="text" name="phone" required><br><br>
+
+            <label>Address:</label><br>
+            <textarea name="address" required></textarea><br><br>
+
+            <button type="submit">Place Order</button>
+
+        </form>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
